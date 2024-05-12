@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="TestMaker.Views.Main"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestMaker.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <!-- Ustawienie przycisków w kolumnie -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!-- Przycisk "Edytuj testy" -->
+            <Button Content="Edytuj testy" Margin="5" FontSize="16" Width="200" />
+
+            <!-- Przycisk "Rozwiąż testy" -->
+            <Button Content="Rozwiąż testy" Margin="5" FontSize="16" Width="200" />
+
+            <!-- Przycisk "Zamknij" -->
+            <Button Content="Zamknij" Margin="5" FontSize="16" Width="200" />
+        </StackPanel>
+    </Grid>
+</UserControl>
