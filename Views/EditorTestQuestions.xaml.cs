@@ -15,9 +15,12 @@ using System.Windows.Shapes;
 
 namespace TestMaker.Views
 {
-    public partial class Main : UserControl
+    /// <summary>
+    /// Interaction logic for EditorTestQuestions.xaml
+    /// </summary>
+    public partial class EditorTestQuestions : UserControl
     {
-        public Main()
+        public EditorTestQuestions()
         {
             InitializeComponent();
         }

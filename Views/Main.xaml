@@ -10,7 +10,7 @@
         <!-- Ustawienie przycisków w kolumnie -->
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <!-- Przycisk "Edytuj testy" -->
-            <Button Content="Edytuj testy" Margin="5" FontSize="16" Width="200" />
+            <Button Content="Edytuj testy" Margin="5" FontSize="16" Width="200" Command="{Binding SwitchToEditorTestListCommand}" />
 
             <!-- Przycisk "Rozwiąż testy" -->
             <Button Content="Rozwiąż testy" Margin="5" FontSize="16" Width="200" />

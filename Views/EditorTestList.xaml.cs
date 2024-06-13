@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 
 namespace TestMaker.Views
 {
-    public partial class Main : UserControl
+    public partial class EditorTestList : UserControl
     {
-        public Main()
+        public EditorTestList()
         {
             InitializeComponent();
         }
