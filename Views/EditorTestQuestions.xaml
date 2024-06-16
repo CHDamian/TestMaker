@@ -11,7 +11,13 @@
             <!-- Tytuł "Edytuj Test" -->
             <TextBlock Text="Edytuj Test" HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,20"/>
 
-            <!-- Przewijany panel -->
+            <!-- Nowy TextBox do liczby pytań do odpowiedzi -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Pytania w teście:" Margin="0,0,10,0"/>
+                <TextBox Text="{Binding QuestionsToAnswer, Mode=TwoWay}" Width="50" />
+            </StackPanel>
+
+            <!-- Przewijany panel z pytaniami -->
             <Border BorderBrush="Black" BorderThickness="1" Height="300" Margin="0,0,0,20">
                 <ScrollViewer>
                     <ItemsControl ItemsSource="{Binding Questions}">
@@ -35,7 +41,9 @@
                                             </ItemsControl>
                                         </StackPanel>
                                         <!-- Przycisk "Usuń" -->
-                                        <Button Content="Usuń" Background="Red" Foreground="White" HorizontalAlignment="Right" Margin="0,10,0,0" />
+                                        <Button Content="Usuń" Background="Red" Foreground="White" HorizontalAlignment="Right" Margin="0,10,0,0"
+                                                Command="{Binding DataContext.RemoveQuestionCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                                CommandParameter="{Binding}" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
