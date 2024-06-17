@@ -1,4 +1,6 @@
-﻿namespace TestMaker.ViewModels
+﻿using TestMaker.Models;
+
+namespace TestMaker.ViewModels
 {
     internal class TestViewModel
     {
