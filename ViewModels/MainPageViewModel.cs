@@ -18,13 +18,20 @@ namespace TestMaker.ViewModels
         {
             _mainViewModel = mainViewModel;
             SwitchToEditorTestListCommand = new RelayCommand(param => SwitchToEditorTestList());
+            SwitchToSolvingTestChooseCommand = new RelayCommand(param => SwitchToSolvingTestChoose());
         }
 
         public ICommand SwitchToEditorTestListCommand { get; }
+        public ICommand SwitchToSolvingTestChooseCommand { get; }
 
         private void SwitchToEditorTestList()
         {
             _mainViewModel.CurrentView = new EditorTestListViewModel(_mainViewModel);
+        }
+
+        private void SwitchToSolvingTestChoose()
+        {
+            _mainViewModel.CurrentView = new SolvingTestChooseViewModel(_mainViewModel);
         }
     }
 }

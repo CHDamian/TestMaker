@@ -58,7 +58,7 @@
             <Button Content="Edytuj testy" Command="{Binding SwitchToEditorTestListCommand}" Style="{StaticResource FancyButton}" />
 
             <!-- Przycisk "Rozwiąż testy" -->
-            <Button Content="Rozwiąż testy" Style="{StaticResource FancyButton}" />
+            <Button Content="Rozwiąż testy" Command="{Binding SwitchToSolvingTestChooseCommand}" Style="{StaticResource FancyButton}" />
 
             <!-- Przycisk "Zamknij" -->
             <Button Content="Zamknij" Style="{StaticResource FancyButton}" />
