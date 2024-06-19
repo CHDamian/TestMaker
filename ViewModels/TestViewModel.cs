@@ -10,32 +10,11 @@ namespace TestMaker.ViewModels
         private readonly MainViewModel _mainViewModel;
         public TestSolution TestSolution { get; set; }
 
-        private int _page;
-        public int Page
-        {
-            get { return _page; }
-            set
-            {
-                if (_page != value)
-                {
-                    _page = value;
-                    OnPropertyChanged(nameof(Page));
-                    OnPropertyChanged(nameof(CurrentQuestion));
-                }
-            }
-        }
+        public int Page;
 
-        public Question CurrentQuestion
-        {
-            get
-            {
-                if (TestSolution != null && TestSolution.Questions != null && Page >= 0 && Page < TestSolution.Questions.Count)
-                {
-                    return TestSolution.Questions[Page];
-                }
-                return null;
-            }
-        }
+        public int QuestionNum;
+
+        public QuestionForm question { get; set; }
 
 
         public TestViewModel(MainViewModel mainViewModel, Test selectedTest, TestSolution solution, int page)
@@ -44,47 +23,53 @@ namespace TestMaker.ViewModels
             _mainViewModel = mainViewModel;
             TestSolution = solution;
             Page = page;
+            QuestionNum = Page + 1;
             NextQuestionCommand = new RelayCommand(param => NextQuestion());
             PreviousQuestionCommand = new RelayCommand(param => PreviousQuestion());
             StopTestCommand = new RelayCommand(param => StopTest());
             FinishTestCommand = new RelayCommand(param => FinishTest());
-            CatchAnswerCommand = new RelayCommand(param => CatchAnswer());
+
+            question = new QuestionForm
+            {
+                Header = "Pytanie " + QuestionNum,
+                Content = solution.Questions[Page].Content,
+            };
+
+            foreach(Answer answer in solution.Questions[Page].Answers)
+            {
+                question.Answers.Add(answer);
+            }
         }
 
         public ICommand NextQuestionCommand { get; }
         public ICommand PreviousQuestionCommand { get; }
         public ICommand StopTestCommand { get; }
         public ICommand FinishTestCommand { get; }
-        public ICommand CatchAnswerCommand { get; }
-
-
 
         public void NextQuestion()
         {
             if (Page < TestSolution.Questions.Count - 1)
             {
-                Page++;
+                _mainViewModel.CurrentView = new TestViewModel(_mainViewModel, SelectedTest, TestSolution, Page + 1);
             }
         }
 
         public void PreviousQuestion()
         {
-
+            if (Page > 0)
+            {
+                _mainViewModel.CurrentView = new TestViewModel(_mainViewModel, SelectedTest, TestSolution, Page - 1);
+            }
         }
 
         public void StopTest()
         {
-
+            _mainViewModel.CurrentView = new SolvingTestInfoViewModel(_mainViewModel, SelectedTest.Name);
         }
 
         public void FinishTest()
         {
-
-        }
-
-        public void CatchAnswer()
-        {
-
+            _mainViewModel.CurrentView = new SolvingTestInfoViewModel(_mainViewModel, SelectedTest.Name);
         }
     }
 }
