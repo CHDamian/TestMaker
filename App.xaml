@@ -30,5 +30,8 @@
         <DataTemplate DataType="{x:Type vm:TestResultViewModel}">
             <v:TestResult />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CheckHistoryViewModel}">
+            <v:CheckHistory />
+        </DataTemplate>
     </Application.Resources>
 </Application>
