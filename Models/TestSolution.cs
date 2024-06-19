@@ -29,7 +29,7 @@ namespace TestMaker.Models
                 {
                     Answer CopyAnswer = new Answer();
                     CopyAnswer.Value = answer.Value;
-                    CopyAnswer.IsCorrect = answer.IsCorrect;
+                    CopyAnswer.IsCorrect = false;
                     CopyQuestion.Answers.Add(CopyAnswer);
                 }
                 ShufflerService.Shuffle(CopyQuestion.Answers);
