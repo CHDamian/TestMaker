@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using TestMaker.Commands;
 using TestMaker.Models;
 
@@ -13,6 +14,9 @@ namespace TestMaker.ViewModels
         public int Page;
 
         public int QuestionNum;
+
+        public Boolean PreviousIsEnabled { get; set; }
+        public Boolean NextIsEnabled { get; set; }
 
         public QuestionForm question { get; set; }
 
@@ -39,6 +43,9 @@ namespace TestMaker.ViewModels
             {
                 question.Answers.Add(answer);
             }
+
+            PreviousIsEnabled = Page != 0;
+            NextIsEnabled = Page != (solution.Questions.Count - 1);
         }
 
         public ICommand NextQuestionCommand { get; }
@@ -69,7 +76,7 @@ namespace TestMaker.ViewModels
 
         public void FinishTest()
         {
-            _mainViewModel.CurrentView = new SolvingTestInfoViewModel(_mainViewModel, SelectedTest.Name);
+            _mainViewModel.CurrentView = new TestResultViewModel(_mainViewModel, SelectedTest, TestSolution);
         }
     }
 }
