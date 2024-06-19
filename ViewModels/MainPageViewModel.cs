@@ -19,10 +19,12 @@ namespace TestMaker.ViewModels
             _mainViewModel = mainViewModel;
             SwitchToEditorTestListCommand = new RelayCommand(param => SwitchToEditorTestList());
             SwitchToSolvingTestChooseCommand = new RelayCommand(param => SwitchToSolvingTestChoose());
+            CloseApplicationCommand = new RelayCommand(param => CloseApplication());
         }
 
         public ICommand SwitchToEditorTestListCommand { get; }
         public ICommand SwitchToSolvingTestChooseCommand { get; }
+        public ICommand CloseApplicationCommand { get; }
 
         private void SwitchToEditorTestList()
         {
@@ -32,6 +34,11 @@ namespace TestMaker.ViewModels
         private void SwitchToSolvingTestChoose()
         {
             _mainViewModel.CurrentView = new SolvingTestChooseViewModel(_mainViewModel);
+        }
+
+        private void CloseApplication()
+        {
+            TestMaker.App.Current.Shutdown();
         }
     }
 }
