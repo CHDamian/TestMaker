@@ -61,7 +61,7 @@
             <Button Content="Rozwiąż testy" Command="{Binding SwitchToSolvingTestChooseCommand}" Style="{StaticResource FancyButton}" />
 
             <!-- Przycisk "Zamknij" -->
-            <Button Content="Zamknij" Style="{StaticResource FancyButton}" />
+            <Button Content="Zamknij" Style="{StaticResource FancyButton}" Command="{Binding CloseApplicationCommand}" />
         </StackPanel>
     </Grid>
 </UserControl>
