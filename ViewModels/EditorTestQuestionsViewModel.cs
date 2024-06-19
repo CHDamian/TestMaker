@@ -91,13 +91,17 @@ namespace TestMaker.ViewModels
                 existingTest.Questions.Clear();
                 existingTest.QuestionsToAnswer = QuestionsToAnswer;
 
+                int i = 0;
+
                 foreach (var questionForm in Questions)
                 {
                     var question = new Question
                     {
                         Content = questionForm.Content,
-                        Answers = questionForm.Answers.ToList()
+                        Answers = questionForm.Answers.ToList(),
+                        Number = i
                     };
+                    i++;
                     existingTest.Questions.Add(question);
                 }
             }
@@ -128,7 +132,8 @@ namespace TestMaker.ViewModels
                 newQuestionForm.Answers.Add(new Answer
                 {
                     Value = "",
-                    IsCorrect = false
+                    IsCorrect = false,
+                    Number = i
                 });
             }
 

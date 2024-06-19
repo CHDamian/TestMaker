@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TestMaker.Commands;
 using TestMaker.Models;
+using TestMaker.Services;
 
 namespace TestMaker.ViewModels
 {
@@ -24,8 +25,9 @@ namespace TestMaker.ViewModels
             _mainViewModel = mainViewModel;
             SelectedTest = test;
             TestSolution = testSolution;
-            Points = 0;
-            PointsLabel = "" + Points + "/" + SelectedTest.QuestionsToAnswer;
+            TestSolution.Points = GradeService.Grade(SelectedTest, TestSolution);
+            Points = TestSolution.Points;
+            PointsLabel = "" + Points + "/" + TestSolution.Total;
             GoBackCommand = new RelayCommand(param => GoBack());
             
         }

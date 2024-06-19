@@ -10,6 +10,8 @@ namespace TestMaker.Models
     {
         public string Value { get; set; }
         public bool IsCorrect { get; set; }
+
+        public int Number { get; set; }
     }
 }
 
