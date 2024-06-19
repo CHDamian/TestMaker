@@ -45,7 +45,7 @@ namespace TestMaker.ViewModels
 
         private void StartTest()
         {
-            // Logika rozpoczynania testu
+            _mainViewModel.CurrentView = new TestViewModel(_mainViewModel, currentTest, new TestSolution(currentTest), 0);
         }
     }
 }
