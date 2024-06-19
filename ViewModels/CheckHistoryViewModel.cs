@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 using TestMaker.Commands;
 using TestMaker.Models;
@@ -26,11 +25,34 @@ namespace TestMaker.ViewModels
             }
         }
 
+        public ICollectionView FilteredResults { get; private set; }
+        public ObservableCollection<string> FilterOptions { get; }
+        private string _selectedFilterOption;
+        public string SelectedFilterOption
+        {
+            get { return _selectedFilterOption; }
+            set
+            {
+                _selectedFilterOption = value;
+                OnPropertyChanged();
+                ApplySort();
+            }
+        }
+
+        public ICommand ResetFilterCommand { get; }
+
         public CheckHistoryViewModel(MainViewModel mainViewModel, Test test)
         {
             _mainViewModel = mainViewModel;
             this.currentTest = test;
-            _results= new ObservableCollection<TestResult>(test.Solutions);
+            _results = new ObservableCollection<TestResult>(test.Solutions);
+
+            FilteredResults = CollectionViewSource.GetDefaultView(_results);
+
+            FilterOptions = new ObservableCollection<string> { "Data", "Punkty", "Suma" };
+            SelectedFilterOption = FilterOptions.FirstOrDefault();
+
+            ResetFilterCommand = new RelayCommand(param => ResetFilter());
 
             GoBackCommand = new RelayCommand(param => GoBack());
         }
@@ -40,6 +62,30 @@ namespace TestMaker.ViewModels
         private void GoBack()
         {
             _mainViewModel.CurrentView = new SolvingTestInfoViewModel(_mainViewModel, currentTest.Name);
+        }
+
+        private void ApplySort()
+        {
+            FilteredResults.SortDescriptions.Clear();
+
+            switch (SelectedFilterOption)
+            {
+                case "Data":
+                    FilteredResults.SortDescriptions.Add(new SortDescription("dateStr", ListSortDirection.Ascending));
+                    break;
+                case "Punkty":
+                    FilteredResults.SortDescriptions.Add(new SortDescription("Points", ListSortDirection.Ascending));
+                    break;
+                case "Suma":
+                    FilteredResults.SortDescriptions.Add(new SortDescription("Total", ListSortDirection.Ascending));
+                    break;
+            }
+        }
+
+        private void ResetFilter()
+        {
+            SelectedFilterOption = FilterOptions.FirstOrDefault();
+            ApplySort();
         }
     }
 }
