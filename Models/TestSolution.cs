@@ -14,11 +14,14 @@ namespace TestMaker.Models
         public List<Question> Questions { get; set; }
         public int Points { get; set; }
 
+        public int Total { get; set; }
+
         public TestSolution(Test test)
         {
             Name = test.Name;
             Category = test.Category;
             Points = 0;
+            Total = test.QuestionsToAnswer;
             Questions = new List<Question>();
             foreach(Question question in test.Questions)
             {
