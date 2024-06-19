@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="TestMaker.Views.CheckHistory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TestMaker.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <!-- Button style -->
+    <UserControl.Resources>
+        <Style x:Key="StyledButton" TargetType="Button">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#005B99"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,3"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="3">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#005B99"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#004080"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#D3D3D3"/>
+                                <Setter Property="Foreground" Value="#A9A9A9"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Styl dla GridViewColumnHeader -->
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Historia" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <TextBlock Text="Sortuj według: " VerticalAlignment="Center" Margin="0,0,10,0"/>
+            <ComboBox Width="150" ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilterOption}" Margin="0,0,10,0"/>
+        </StackPanel>
+
+        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="0,0,0,20">
+            <ListView ItemsSource="{Binding FilteredResults}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Data" DisplayMemberBinding="{Binding dateStr}" />
+                        <GridViewColumn Header="Punkty" DisplayMemberBinding="{Binding Points}" />
+                        <GridViewColumn Header="Suma" DisplayMemberBinding="{Binding Total}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+
+        <Button Grid.Row="3" 
+                Content="Go Back" 
+                Style="{StaticResource StyledButton}" 
+                Command="{Binding GoBackCommand}" 
+                HorizontalAlignment="Right" 
+                Margin="10"/>
+    </Grid>
+</UserControl>
