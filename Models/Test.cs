@@ -9,9 +9,12 @@ namespace TestMaker.Models
         public List<Question> Questions { get; set; }
         public int QuestionsToAnswer { get; set; }
 
+        public List<TestResult> Solutions { get; set; }
+
         public Test()
         {
             Questions = new List<Question>();
+            Solutions = new List<TestResult>();
             QuestionsToAnswer = 0; // Domyślnie ustawione na zero
         }
     }

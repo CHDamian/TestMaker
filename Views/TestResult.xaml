@@ -37,6 +37,12 @@
                     <TextBlock Text="{Binding SelectedTest.Category}"/>
                 </StackPanel>
 
+                <!-- Wiersz Data -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Data:" FontWeight="Bold" Width="100"/>
+                    <TextBlock Text="{Binding TestSolution.dateStr}"/>
+                </StackPanel>
+
                 <!-- Wiersz Ilość pytań -->
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                     <TextBlock Text="Wynik:" FontWeight="Bold" Width="100"/>

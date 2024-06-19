@@ -56,6 +56,7 @@ namespace TestMaker.ViewModels
             {
                 var tests = JsonFileService.LoadTests();
                 var groupedTests = tests
+                    .Where(t => t.QuestionsToAnswer != 0 && t.Questions.Count >= t.QuestionsToAnswer)
                     .GroupBy(t => t.Category)
                     .Select(g => new Category
                     {

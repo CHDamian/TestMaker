@@ -35,5 +35,14 @@ namespace TestMaker.Services
             tests.RemoveAll(t => t.Name == testToRemove.Name && t.Category == testToRemove.Category);
             SaveTests(tests);
         }
+
+        public static void UpdateTest(Test testToUpdate)
+        {
+            List<Test> tests = LoadTests();
+            tests.RemoveAll(t => t.Name == testToUpdate.Name && t.Category == testToUpdate.Category);
+            tests.Add(testToUpdate);
+            SaveTests(tests);
+        }
+
     }
 }

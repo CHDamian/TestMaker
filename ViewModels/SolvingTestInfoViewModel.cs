@@ -25,12 +25,15 @@ namespace TestMaker.ViewModels
             _mainViewModel = mainViewModel;
             GoBackCommand = new RelayCommand(param => GoBack());
             StartTestCommand = new RelayCommand(param => StartTest());
+            CheckHistoryCommand = new RelayCommand(param => CheckHistory());
 
             LoadTest(testName);
         }
 
         public ICommand GoBackCommand { get; }
         public ICommand StartTestCommand { get; }
+
+        public ICommand CheckHistoryCommand { get; }
 
         private void LoadTest(string testName)
         {
@@ -46,6 +49,11 @@ namespace TestMaker.ViewModels
         private void StartTest()
         {
             _mainViewModel.CurrentView = new TestViewModel(_mainViewModel, currentTest, new TestSolution(currentTest), 0);
+        }
+
+        private void CheckHistory()
+        {
+            _mainViewModel.CurrentView = new CheckHistoryViewModel(_mainViewModel, CurrentTest);
         }
     }
 }
