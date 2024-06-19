@@ -34,6 +34,8 @@ namespace TestMaker.Models
             }
         }
 
+        public int Number;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)

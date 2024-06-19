@@ -24,12 +24,14 @@ namespace TestMaker.Models
             {
                 Question CopyQuestion = new Question();
                 CopyQuestion.Content = question.Content;
+                CopyQuestion.Number = question.Number;
                 CopyQuestion.Answers = new List<Answer>();
                 foreach(Answer answer in question.Answers)
                 {
                     Answer CopyAnswer = new Answer();
                     CopyAnswer.Value = answer.Value;
                     CopyAnswer.IsCorrect = false;
+                    CopyAnswer.Number = answer.Number;
                     CopyQuestion.Answers.Add(CopyAnswer);
                 }
                 ShufflerService.Shuffle(CopyQuestion.Answers);
