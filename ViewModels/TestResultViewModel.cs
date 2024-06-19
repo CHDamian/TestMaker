@@ -25,9 +25,22 @@ namespace TestMaker.ViewModels
             _mainViewModel = mainViewModel;
             SelectedTest = test;
             TestSolution = testSolution;
+            
             TestSolution.Points = GradeService.Grade(SelectedTest, TestSolution);
             Points = TestSolution.Points;
             PointsLabel = "" + Points + "/" + TestSolution.Total;
+            TestSolution.date = DateTime.Now;
+            TestSolution.dateStr = String.Format("{0:g}", TestSolution.date);
+
+            SelectedTest.Solutions.Add(new TestResult
+            {
+                Points= TestSolution.Points,
+                Total= TestSolution.Total,
+                date= DateTime.Now,
+                dateStr= TestSolution.dateStr
+            });
+            JsonFileService.UpdateTest(SelectedTest);
+
             GoBackCommand = new RelayCommand(param => GoBack());
             
         }

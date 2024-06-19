@@ -16,12 +16,17 @@ namespace TestMaker.Models
 
         public int Total { get; set; }
 
+        public DateTime date { get; set; }
+
+        public string dateStr { get; set; }
+
         public TestSolution(Test test)
         {
             Name = test.Name;
             Category = test.Category;
             Points = 0;
             Total = test.QuestionsToAnswer;
+            dateStr = "";
             Questions = new List<Question>();
             foreach(Question question in test.Questions)
             {
