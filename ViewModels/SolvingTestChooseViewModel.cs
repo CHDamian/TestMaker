@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,13 @@ namespace TestMaker.ViewModels
         {
             _mainViewModel = mainViewModel;
             GoBackCommand = new RelayCommand(param => GoBack());
-            ChooseTestCommand = new RelayCommand(param => ChooseTest());
+            ChooseTestCommand = new RelayCommand(param => ChooseTest(param as TestItem));
             LoadAndGroupTests();
         }
 
-        public ICommand GoBackCommand { get; set; }
+        public ICommand GoBackCommand { get; }
 
-        public ICommand ChooseTestCommand { get; set; }
+        public ICommand ChooseTestCommand { get; }
 
         private ObservableCollection<Category> _categories;
         public ObservableCollection<Category> Categories
@@ -44,9 +45,9 @@ namespace TestMaker.ViewModels
             _mainViewModel.CurrentView = new MainPageViewModel(_mainViewModel);
         }
 
-        private void ChooseTest() 
+        private void ChooseTest(TestItem test) 
         {
-
+            _mainViewModel.CurrentView = new SolvingTestInfoViewModel(_mainViewModel, test.Test.Name);
         }
 
         private void LoadAndGroupTests()

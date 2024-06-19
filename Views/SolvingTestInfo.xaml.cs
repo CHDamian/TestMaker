@@ -17,11 +17,11 @@ using TestMaker.ViewModels;
 namespace TestMaker.Views
 {
     /// <summary>
-    /// Interaction logic for SolvingTestChoose.xaml
+    /// Interaction logic for SolvingTestInfo.xaml
     /// </summary>
-    public partial class SolvingTestChoose : UserControl
+    public partial class SolvingTestInfo : UserControl
     {
-        public SolvingTestChoose()
+        public SolvingTestInfo()
         {
             InitializeComponent();
         }

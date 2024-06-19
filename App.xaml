@@ -21,5 +21,8 @@
         <DataTemplate DataType="{x:Type vm:SolvingTestChooseViewModel}">
             <v:SolvingTestChoose />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SolvingTestInfoViewModel}">
+            <v:SolvingTestInfo />
+        </DataTemplate>
     </Application.Resources>
 </Application>
