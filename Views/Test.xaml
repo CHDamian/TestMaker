@@ -17,14 +17,16 @@
         </Grid.RowDefinitions>
 
         <!-- Góra: pytanie z większym marginesem -->
-        <TextBlock Text="1. Treść pytania" FontSize="18" FontWeight="Bold" Margin="10,20" />
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="{Binding Content}" FontSize="18" FontWeight="Bold" Margin="10,20" />
+        </StackPanel>
 
         <!-- Środek: odpowiedzi -->
         <StackPanel Grid.Row="1" Margin="10">
-            <CheckBox Content="Odpowiedź 1" Margin="5" FontSize="16" />
-            <CheckBox Content="Odpowiedź 2" Margin="5" FontSize="16" />
-            <CheckBox Content="Odpowiedź 3" Margin="5" FontSize="16" />
-            <CheckBox Content="Odpowiedź 4" Margin="5" FontSize="16" />
+            <CheckBox Content="{Binding Answers[0].Value}" Margin="5" FontSize="16" />
+            <CheckBox Content="{Binding Answers[1].Value}" Margin="5" FontSize="16" />
+            <CheckBox Content="{Binding Answers[2].Value}" Margin="5" FontSize="16" />
+            <CheckBox Content="{Binding Answers[3].Value}" Margin="5" FontSize="16" />
         </StackPanel>
 
         <!-- Dół: przyciski nawigacji i akcji -->
