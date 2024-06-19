@@ -66,8 +66,9 @@
                                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Width="200" Margin="0,0,10,0"/>
 
                                                 <!-- Przyciski "Edytuj" i "Usuń" -->
-                                                <Button Content="Edytuj" Style="{StaticResource StyledButton}" Width="60" Command="{Binding DataContext.EditTestCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
-                                                <Button Content="Usuń" Style="{StaticResource StyledButton}" Width="60" Command="{Binding DataContext.RemoveTestCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
+                                                <Button Content="Edytuj" Style="{StaticResource StyledButton}" Width="50" Command="{Binding DataContext.EditTestCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
+                                                <Button Content="Export" Style="{StaticResource StyledButton}" Width="50" Command="{Binding DataContext.ExportTestCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
+                                                <Button Content="Usuń" Style="{StaticResource StyledButton}" Width="50" Command="{Binding DataContext.RemoveTestCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>

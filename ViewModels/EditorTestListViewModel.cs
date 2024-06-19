@@ -20,6 +20,7 @@ namespace TestMaker.ViewModels
             AddTestCommand = new RelayCommand(param => AddTest());
             RemoveTestCommand = new RelayCommand(param => RemoveTest(param as TestItem));
             EditTestCommand = new RelayCommand(param => EditTest(param as TestItem));
+            ExportTestCommand = new RelayCommand(param => ExportTest(param as TestItem));
 
             // Wczytaj testy z pliku JSON i grupuj je według kategorii
             LoadAndGroupTests();
@@ -36,6 +37,9 @@ namespace TestMaker.ViewModels
 
         // Komenda do edytowania testu
         public ICommand EditTestCommand { get; }
+
+        // Komenda do exportu testu
+        public ICommand ExportTestCommand { get; }
 
         // Kolekcja kategorii do wyświetlenia w widoku
         private ObservableCollection<Category> _categories;
@@ -120,6 +124,14 @@ namespace TestMaker.ViewModels
             if (testItem != null)
             {
                 _mainViewModel.CurrentView = new EditorTestQuestionsViewModel(_mainViewModel, testItem.Test);
+            }
+        }
+
+        private void ExportTest(TestItem testItem)
+        {
+            if (testItem != null)
+            {
+                _mainViewModel.CurrentView = new EditorTestExportViewModel(_mainViewModel, testItem.Test);
             }
         }
     }
