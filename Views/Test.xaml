@@ -6,7 +6,14 @@
              xmlns:local="clr-namespace:TestMaker.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <UserControl.Resources>
+        <!-- Styl dla animacji fade-in -->
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:1" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <!-- Top: question -->
             <RowDefinition Height="Auto" />
@@ -21,9 +28,6 @@
             <TextBlock Text="{Binding question.Header}" FontSize="18" FontWeight="Bold" Margin="10,5" />
             <TextBlock Text="{Binding question.Content}" FontSize="18" Margin="10,20" />
         </StackPanel>
-        
-        <!-- Top: question with larger margin -->
-        
 
         <!-- Middle: answers -->
         <StackPanel Grid.Row="1" Margin="10">
@@ -35,18 +39,13 @@
 
         <!-- Bottom: navigation and action buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <!-- Stop button (red) -->
-            
-
             <!-- Previous and Next buttons (transparent) -->
             <StackPanel Orientation="Horizontal">
                 <Button Content="Poprzedni" Margin="5" FontSize="16" Command="{Binding PreviousQuestionCommand}" IsEnabled="{Binding PreviousIsEnabled}" />
                 <Button Content="Następny" Margin="5" FontSize="16" Command="{Binding NextQuestionCommand}" IsEnabled="{Binding NextIsEnabled}" />
             </StackPanel>
-
-            <!-- Finish button (green) -->
-            
         </StackPanel>
+
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button Content="Przerwij" Background="Red" Foreground="White" Margin="10,0,0,0" FontSize="16" Command="{Binding StopTestCommand}" />
             <Button Content="Zakończ" Background="Green" Foreground="White" Margin="0,0,10,0" FontSize="16" Command="{Binding FinishTestCommand}" />
