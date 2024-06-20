@@ -36,5 +36,8 @@
         <DataTemplate DataType="{x:Type vm:EditorTestExportViewModel}">
             <v:EditorTestExport />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:EditorTestImportViewModel}">
+            <v:EditorTestImport />
+        </DataTemplate>
     </Application.Resources>
 </Application>

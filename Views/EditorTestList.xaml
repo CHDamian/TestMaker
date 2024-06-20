@@ -82,6 +82,7 @@
             <!-- Przyciski "Powrót" i "Dodaj Test" -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Powrót" Style="{StaticResource StyledButton}" Command="{Binding GoBackCommand}"/>
+                <Button Content="Importuj" Style="{StaticResource StyledButton}" Command="{Binding ImportTestCommand}"/>
                 <Button Content="Dodaj Test" Style="{StaticResource StyledButton}" Command="{Binding AddTestCommand}"/>
             </StackPanel>
         </StackPanel>

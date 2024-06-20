@@ -7,6 +7,8 @@ using System.Windows.Input;
 using TestMaker.Commands;
 using TestMaker.Models;
 using System.Windows.Forms;
+using TestMaker.Services;
+using System.Windows;
 
 namespace TestMaker.ViewModels
 {
@@ -70,6 +72,20 @@ namespace TestMaker.ViewModels
 
         private void ExportTest()
         {
+            currentTest.Solutions = new List<TestResult>();
+
+            try
+            {
+                ImportExportService.ExportToJson<Test>(_exportLocation, exportName + ".json", currentTest);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            System.Windows.MessageBox.Show("Wyeksportowano test", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
             _mainViewModel.CurrentView = new EditorTestListViewModel(_mainViewModel);
         }
     }
